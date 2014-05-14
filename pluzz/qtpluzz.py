@@ -73,7 +73,7 @@ class QPluzz(QtWidgets.QWidget):
 
         def dl(that):
             self.start_btn.setDisabled(True)
-            movie.save(callback=update_progress, avconv_path=self.defaults['--avconv'])
+            movie.save(callback=update_progress, avconv_path=self.defaults['--avconv'], verbose=args['--verbose'])
             self.update_eta_text.emit("ETA -/-")
             self.update_progress_bar.emit(0)
             self.start_btn.setEnabled(True)
