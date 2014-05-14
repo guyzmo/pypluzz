@@ -63,10 +63,13 @@ class PluzzMovie():
     # already exists. Overwrite ? [y/N]
     overwrite_r = re.compile(r".*File '([^']+)' already exists.*")
 
-    def save(self, target_path="~/Downloads", callback=lambda p, t, d, s: print(p, t, d, s), avconv_path='/usr/bin/avconv'):
+    def save(self, target_path="~/Downloads", callback=lambda p, t, d, s: print(p, t, d, s), avconv_path='/usr/bin/avconv', verbose=False):
         if not os.path.isdir(os.path.expanduser(target_path)):
             raise Exception("Can't download and convert: target directory '{}' does not exists".format(target_path))
         def output_parser(output, env={}):
+            if verbose:
+                print(output, file=sys.stderr, end="")
+                return
             duration_m = self.duration_r.match(output)
             if duration_m:
                 h,m,s = duration_m.groups()
@@ -162,7 +165,10 @@ def main():
                 print(_('Get data…'), end="\r", file=sys.stderr)
                 m.retrieve_data()
                 print(_("Download and convert…"), end='\r', file=sys.stderr)
-                m.save(args['--target'], callback=show_progress, avconv_path=args['--avconv'])
+                m.save(args['--target'],
+                       callback=show_progress,
+                       avconv_path=args['--avconv'],
+                       verbose=args['--verbose'])
                 print(("{: <"+str(int(get_term_size()[0]))+"}").format("Download and convertion done: '{}' saved".format(m.dest_file)))
         elif args['get']:
             if not args['<url>']:
