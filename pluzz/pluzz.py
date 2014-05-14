@@ -4,18 +4,20 @@ Pluzz Downloader
 Downloads a movie from the French Television VOD
 
 Usage:
-  pluzz_downloader.py [<url>] pull [-t <target>] [--avconv <avconv>]
+  pluzz_downloader.py gui [<url>] [-t <target>] [--avconv <avconv>] [--verbose]
+  pluzz_downloader.py <url> fetch [-t <target>] [--avconv <avconv>] [--verbose]
   pluzz_downloader.py <url> get [<key>]
   pluzz_downloader.py <url> show
-  pluzz_downloader.py gui
 
 Commands:
   gui                    Launch graphical user interface
   get                    Get list of keys
   get <key>              Get value for key
   show                   Give summary for key
+  fetch                  Download the TV show
 
 Options:
+  <url>                  URL of the TV show
   -t --target <target>   Target directory to download the file to [default: ~/Downloads]
   --avconv <avconv>      Sets full path to avconv binary [default: /usr/bin/avconv]
   -h --help              Show this screen.
@@ -152,7 +154,7 @@ def main():
                 pluzz.qtpluzz.main(args)
             except ImportError:
                 raise Exception(_("Couldn't load Qt libraries. Impossible to run the GUI, sorry."))
-        elif args['pull']:
+        elif args['fetch']:
                 if not args['<url>']:
                     raise Exception(_('Missing URL!'))
                 print(_('Init…'), end="\r", file=sys.stderr)
