@@ -20,8 +20,8 @@ Options:
   <url>                  URL of the TV show
   -t --target <target>   Target directory to download the file to [default: ~/Downloads]
   --avconv <avconv>      Sets full path to avconv binary [default: /usr/bin/avconv]
+  -V --verbose           Show more output.
   -h --help              Show this screen.
-  --version              Show version.
 
 (c)2014 Bernard `Guyzmo` Pratz
 Under the WTFPL <http://wtfpl.net>
@@ -64,7 +64,7 @@ class PluzzMovie():
     overwrite_r = re.compile(r".*File '([^']+)' already exists.*")
 
     def save(self, target_path="~/Downloads", callback=lambda p, t, d, s: print(p, t, d, s), avconv_path='/usr/bin/avconv'):
-        if not os.path.isdir(target_path):
+        if not os.path.isdir(os.path.expanduser(target_path)):
             raise Exception("Can't download and convert: target directory '{}' does not exists".format(target_path))
         def output_parser(output, env={}):
             duration_m = self.duration_r.match(output)
