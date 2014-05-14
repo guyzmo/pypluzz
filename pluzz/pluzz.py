@@ -178,7 +178,7 @@ def main():
             print(_("Get data…"), end="\r", file=sys.stderr)
             m.retrieve_data()
             if args['<key>'] and args['<key>'] in m.keys():
-                print((_("Showing {}:")).format(args['<key>']))
+                print((_("Showing {}:")+"               ").format(args['<key>']))
                 if m[args['<key>']]:
                     if isinstance(m[args['<key>']], collections.Iterable) \
                                                     and len(m[args['<key>']]) > 70:
@@ -212,6 +212,10 @@ def main():
             print(_("      Crew:"))
             for p in m['personnes']:
                 print(_("{f:>24}: {n}, {p}").format(f=", ".join(p['fonctions']), p=p['prenom'], n=p['nom'], ))
+            print(_("  Synopsis:"))
+            for line in textwrap.wrap(m['synopsis'], initial_indent="    "):
+                print("  {}".format(line))
+
 
     except Exception as err:
         print("", file=sys.stderr)
