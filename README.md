@@ -25,6 +25,11 @@ This program downloads movies, and gets metadata of movies.
 (c)2014 Bernard `Guyzmo` Pratz
 Under the WTFPL <http://wtfpl.net>
 
+Screenshot
+----------
+
+![UI](http://m0g.net/stuff/pypluzz.png)
+
 Resources
 ---------
 
