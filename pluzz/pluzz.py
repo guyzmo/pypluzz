@@ -42,7 +42,7 @@ import collections
 from lxml import etree
 
 class PluzzMovie():
-    data_url = "http://webservices.francetelevisions.fr/tools/getInfosOeuvre/v2/?idDiffusion={show}&catalogue=Pluzz&callback=webserviceCallback_{show}"
+    data_url = "http://webservices.francetelevisions.fr/tools/getInfosOeuvre/v2/?idDiffusion={show}&catalogue=Pluzz"
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:19.0) Gecko/20100101 Firefox/19.0'}
     avconv_args = ['-y', '-vcodec', 'copy', '-acodec', 'copy']
 
@@ -54,7 +54,7 @@ class PluzzMovie():
     def retrieve_data(self):
         p = etree.HTML(requests.get(self.url, headers=self.headers).text)
         self.show_id = p.xpath('//meta[@property="og:url"]/@content')[0].split(',')[-1].split('.')[0]
-        self.data = json.loads("".join(requests.get(self.data_url.format(show=self.show_id), headers=self.headers).text.split('(')[1:])[:-1])
+        self.data = json.loads(requests.get(self.data_url.format(show=self.show_id), headers=self.headers).text)
 
     # Duration: 00:44:47.95, start: 0.100667, bitrate: 0 kb/s\n
     duration_r = re.compile(r'.*Duration: (\d\d):(\d\d):(\d\d.\d\d), .*')
