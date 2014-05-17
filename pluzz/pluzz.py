@@ -64,8 +64,9 @@ class PluzzSearch():
     filter_page = 'debut/{}'
     sort = 'tri/{}'
 
-    def __init__(self, out=None):
+    def __init__(self, out=None, verbose=False):
         self.out = out
+        self.verbose = verbose
 
     def __enter__(self):
         return self
@@ -79,11 +80,16 @@ class PluzzSearch():
 
     def get_channels(self):
         h = etree.HTML(requests.get('http://pluzz.francetv.fr/a-z').text)
-        return (i.attrib['data-chaine'] for i in h.xpath('id("chx_chaine")/li'))
+        return [i.attrib['data-chaine'] for i in h.xpath('id("chx_chaine")/li')] + ['all']
 
     def list(self, query=None, category=None, channel=None, limit=100, sort="", page=0):
         print(_('Get data…'), end="\r", file=self.out)
+        print(query, category, channel, limit, sort, page)
         filter_ = [""]
+
+        if category == "all": category = None
+        if channel == "all": channel = None
+
         if    query: filter_ += [self.filter_query.format(query)]
         if category: filter_ += [self.filter_category.format(category)]
         if  channel: filter_ += [self.filter_channel.format(channel)]
@@ -100,6 +106,8 @@ class PluzzSearch():
 
         h = etree.HTML(requests.get(url).text)
         if h.xpath('//span[@class="noresult-big"]/text()'):
+            if self.verbose:
+                print(h.xpath('//span[@class="noresult-big"]/text()'), file=sys.stderr)
             raise Exception("No results found")
         l = h.xpath('//article/h3/a|//article/a/img')
         return [{'id': i[0].attrib['href'].split(',')[-1].split('.')[0],
@@ -318,6 +326,9 @@ def main():
     except Exception as err:
         print("", file=sys.stderr)
         print(_("Error:"), err, file=sys.stderr)
+        if (args['--verbose']):
+            import traceback
+            traceback.print_exc()
         sys.exit(2)
 
 if __name__ == "__main__":
