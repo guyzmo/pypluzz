@@ -110,7 +110,13 @@ Example
 Screenshot
 ----------
 
-![UI](http://m0g.net/stuff/pypluzz.png)
+UI for looking up a show:
+
+![UI](http://m0g.net/stuff/pypluzz-list.png)
+
+UI for downloading a show:
+
+![UI](http://m0g.net/stuff/pypluzz-show.png)
 
 Resources
 ---------
