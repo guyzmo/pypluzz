@@ -43,6 +43,14 @@ This program downloads movies, and gets metadata of movies.
     (c)2014 Bernard `Guyzmo` Pratz
     Under the WTFPL <http://wtfpl.net>
 
+
+ * Forewords
+
+The Pluzz name is certainly a registred trademark from *France Televisions*. All I hope
+is that they will be open minded enough to let us *borrow* the Pluzz name for this program,
+and leave us the legal ability to download programs from Pluzz, which is the only way to
+access programs using only opensource software.
+
 Example
 -------
 
