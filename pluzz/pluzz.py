@@ -67,6 +67,7 @@ class PluzzSearch():
     def __init__(self, out=None, verbose=False):
         self.out = out
         self.verbose = verbose
+        self._main_page_cache = None
 
     def __enter__(self):
         return self
@@ -75,16 +76,17 @@ class PluzzSearch():
         pass
 
     def get_categories(self):
-        h = etree.HTML(requests.get('http://pluzz.francetv.fr/a-z').text)
-        return [i.attrib['value'] for i in h.xpath('id("chx_rubrique")/li/input')] + ['all']
+        if self._main_page_cache is None:
+            self._main_page_cache = etree.HTML(requests.get('http://pluzz.francetv.fr/a-z').text)
+        return [i.attrib['value'] for i in self._main_page_cache.xpath('id("chx_rubrique")/li/input')] + ['all']
 
     def get_channels(self):
-        h = etree.HTML(requests.get('http://pluzz.francetv.fr/a-z').text)
-        return [i.attrib['data-chaine'] for i in h.xpath('id("chx_chaine")/li')] + ['all']
+        if self._main_page_cache is None:
+            self._main_page_cache = etree.HTML(requests.get('http://pluzz.francetv.fr/a-z').text)
+        return [i.attrib['data-chaine'] for i in self._main_page_cache.xpath('id("chx_chaine")/li')] + ['all']
 
     def list(self, query=None, category=None, channel=None, limit=100, sort="", page=0):
         print(_('Get data…'), end="\r", file=self.out)
-        print(query, category, channel, limit, sort, page)
         filter_ = [""]
 
         if category == "all": category = None
@@ -296,6 +298,9 @@ def main():
                     print("  {}".format(line))
         elif args['list'] or args['search']:
             with PluzzSearch(out=sys.stderr) as s:
+                if args['search']:
+                    args['--sort'] = 'relevance'
+
                 items = ('<query>', '<category>', '<channel>', '--limit', '--sort', '--page')
                 list_args = dict(((k.strip('<>-'), args[k]) for k in filter(lambda x: x in items, args.keys())))
 
