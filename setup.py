@@ -23,7 +23,7 @@ long_description = """
 """.format(**read('README.md'))
 
 setup(name='pypluzz',
-      version='1.2',
+      version='1.3',
       description="Pluzz TV Show Downloader",
       long_description=long_description,
       classifiers=[
