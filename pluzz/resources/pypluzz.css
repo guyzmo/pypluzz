@@ -1,10 +1,68 @@
 body {
     background: black;
     color: white
+    font-family: 'tahoma';
 }
 table {
     border-collapse: collapse;
 }
+a, a:visited {
+    text-decoration: none;
+    color: white;
+}
+a:hover, a:active {
+    background: white;
+    color: black;
+}
+
+div#back {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    cursor: pointer;
+    font-size: 40px;
+    padding: 0;
+    position: absolute;
+    top:2px;
+    left: 2px;
+}
+
+div.content {
+    color: white;
+    font-family: 'tahoma';
+    font-size: 12px;
+}
+
+div.content span.md_key {
+    text-align: right;
+    font-style: italic;
+    width: 50px;
+}
+div.content span.md_val {
+    margin-left: 15px;
+    width: 50px;
+}
+div.content ul.crew_list {
+    list-style-type: none;
+    margin: auto;
+}
+div.content ul.crew_list span.md_key {
+    margin: 5px;
+
+}
+div.content ul.crew_list span.md_val {
+    margin: 5px;
+}
+
+div.content img.md_val {
+    float: left;
+    position: absolute;
+    top:120px;
+    right:20px;
+    width: 300px;
+    -webkit-box-shadow: 10px 10px 19px 2px rgba(255,255,255,0.2);
+    box-shadow: 10px 10px 19px 2px rgba(255,255,255,0.2);
+}
+
 div.image{
     float:left; /* important */
     position:relative; /* important(so we can absolutely position the description div */
@@ -17,7 +75,6 @@ div.caption{
     width:100%;
     /* styling bellow */
     background-color:black;
-    font-family: 'tahoma';
     font-size:15px;
     color:white;
     opacity:0.6; /* transparency */
@@ -32,28 +89,30 @@ p.caption_content{
     margin:0px;
     z-index: 50;
 }
+.header {
+    margin-top: 3px;
+    margin-bottom: 7px;
+}
+
 .header ul {
     list-style-type: none;
-    height: 30px;
+    height: 10px;
     width: 100%;
-    margin: auto;
+    margin-top: 1px;
 }
 .header li {
     float: left;
-    padding-right: 2px;
-    padding-left: 2px;
+    margin: 0;
+    padding: 0;
     display: block;
     text-decoration: none;
-    font-size: 12pt;
+    font-family: 'tahoma';
+    font-size:12px;
 }
-a {
-    text-decoration: none;
-    color: #FFF;
+.header li a {
+    padding: 3px;
 }
-a:visited {
-    color: #FFF;
-}
-a:hover {
-    background: #FFF;
-    color: #000
+.header li.selected a, a:visited, a:hover, a:active {
+    background: white;
+    color: black;
 }
