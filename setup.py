@@ -23,7 +23,7 @@ long_description = """
 """.format(**read('README.md'))
 
 setup(name='pypluzz',
-      version='1.3',
+      version='1.5',
       description="Pluzz TV Show Downloader",
       long_description=long_description,
       classifiers=[
@@ -39,6 +39,7 @@ setup(name='pypluzz',
       packages=['pluzz'],
       zip_safe=False,
       install_requires=[
+          'pyvodservice'
           'pypluzz',
           'docopt',
           'lxml',
@@ -55,5 +56,5 @@ setup(name='pypluzz',
 
 if "install" in sys.argv:
     print("""
-Python Pluzz downloader is now installed!
+Python Pluzz VOD downloader is now installed!
 """)
