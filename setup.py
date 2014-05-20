@@ -22,9 +22,9 @@ long_description = """
 
 """.format(**read('README.md'))
 
-setup(name='pypluzz',
+setup(name='pyvod.pluzz',
       version='1.5',
-      description="Pluzz TV Show Downloader",
+      description="PyVOD pluzz browser",
       long_description=long_description,
       classifiers=[
           'Development Status :: 4 - Beta',
@@ -36,21 +36,18 @@ setup(name='pypluzz',
       author_email='pypluzz@m0g.net',
       url='http://m0g.net',
       license='GPLv3',
-      packages=['pluzz'],
+      packages=['vod.pluzz'],
       zip_safe=False,
       install_requires=[
-          'pyvodservice'
-          'pypluzz',
-          'docopt',
+          'pyvod.pluzz',
+          'pyvod',
           'lxml',
-          'PyQtX',
-          'requests',
           'setuptools',
       ],
       entry_points="""
       # -*- Entry points: -*-
       [console_scripts]
-      pypluzz = pluzz.pluzz:main
+      pypluzz = vod.pluzz.pluzz:main
       """,
       )
 

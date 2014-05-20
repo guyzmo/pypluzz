@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-05-20 21:19+CEST\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: ../../pluzz/pluzz.py:75
+msgid "On %d %h %Y at %H:%M"
+msgstr "Le %d %h %Y à %Hh%m"
+
+#: ../../pluzz/pluzz.py:77
+msgid "Id"
+msgstr "Id"
+
+#: ../../pluzz/pluzz.py:79
+msgid "Broadcast"
+msgstr "Diffusion"
+
+#: ../../pluzz/pluzz.py:81
+msgid "Length"
+msgstr "Durée"
+
+#: ../../pluzz/pluzz.py:82
+msgid "Genre"
+msgstr "Genre"
+
+#: ../../pluzz/pluzz.py:83
+msgid "Season"
+msgstr "Saison"
+
+#: ../../pluzz/pluzz.py:84
+msgid "Channel"
+msgstr "Chaîne"
+
+#: ../../pluzz/pluzz.py:85
+msgid "Rights"
+msgstr "Droits"
+
+#: ../../pluzz/pluzz.py:86
+msgid "Picture"
+msgstr "Image"
+
+#: ../../pluzz/pluzz.py:87
+msgid "Website"
+msgstr "Site web"
+
+#: ../../pluzz/pluzz.py:88
+msgid "Pluzz"
+msgstr "Pluzz"
+
+#: ../../pluzz/pluzz.py:159
+msgid "Get Data…"
+msgstr "Récupération des données…"
+

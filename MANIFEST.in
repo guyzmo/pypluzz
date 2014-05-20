@@ -1,2 +1,2 @@
-include README 
-recursive-include pluzz/i18n *
+include README.md
+recursive-include vod/pluzz/i18n *

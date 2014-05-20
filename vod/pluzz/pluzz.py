@@ -4,12 +4,12 @@ Pluzz Downloader
 Downloads a movie from the French Television VOD
 
 Usage:
-  pluzz_downloader.py gui [<id>] [-t <target>] [--avconv <avconv>] [--verbose]
-  pluzz_downloader.py fetch <id> [-t <target>] [--avconv <avconv>] [--verbose]
-  pluzz_downloader.py get <id> [<key>...] [--verbose]
-  pluzz_downloader.py show <id> [--verbose]
-  pluzz_downloader.py list [<category>] [<channel>] [-l <limit>] [-s <sort>] [-i] [--verbose]
-  pluzz_downloader.py search <query> [<category>] [<channel>] [-l <limit>] [-s <sort>] [-i] [--verbose]
+  pypluzz gui [<id>] [-t <target>] [--avconv <avconv>] [--verbose]
+  pypluzz fetch <id> [-t <target>] [--avconv <avconv>] [--verbose]
+  pypluzz get <id> [<key>...] [--verbose]
+  pypluzz show <id> [--verbose]
+  pypluzz list [<category>] [<channel>] [-l <limit>] [-s <sort>] [-i] [--verbose]
+  pypluzz search <query> [<category>] [<channel>] [-l <limit>] [-s <sort>] [-i] [--verbose]
 
 Commands:
   gui                    Launch graphical user interface.
@@ -46,10 +46,10 @@ import textwrap
 import itertools
 from lxml import etree
 
-from vodservice.cli import run
-from vodservice.video import AVConvDownloader
-from vodservice.vodservice import VodService
-from vodservice.vodservice import VodServiceShow
+from vod.ui.cli import run
+from vod.video import AVConvDownloader
+from vod.vodservice import VodService
+from vod.vodservice import VodServiceShow
 
 class PluzzShow(VodServiceShow):
     @property
@@ -69,7 +69,7 @@ class PluzzShow(VodServiceShow):
             p = self.get(list(filter(lambda x: x['format'] == 'm3u8-download', self.data['videos']))[0]['url']).text
             video_url = list(filter(lambda l: "index_2" in l, p.split()))[0]
             dest_file = "{}_{}.mkv".format(self.data['code_programme'], self.id)
-            return downlaoder.save(dest_file, video_url, callback)
+            return downloader.save(dest_file, video_url, callback)
 
     def get_summary(self):
         t_when = time.strftime(_("On %d %h %Y at %H:%M"), time.localtime(self['diffusion']['timestamp']))
